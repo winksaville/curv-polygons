@@ -1,0 +1,12 @@
+parametric
+    M :: slider[-1,2] = 0;
+    rpSides :: slider[1,5] = 1;
+    rpSize :: slider[1,5] = 1;
+in
+let
+  regPoly {sides, size} = regular_polygon sides >> extrude size;
+  ball = sphere;
+in
+morph M [regPoly {sides:rpSides, size:rpSize}, ball]
+//morph M [regPoly {sides:3, size:3}, ball]
+

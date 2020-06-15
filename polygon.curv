@@ -1,0 +1,42 @@
+parametric
+  base_default :: slider[0, 5] = 1;
+in
+let
+  // Compile error:
+  // ERROR: <function tri> does not contain field .bbox
+  // at file "/usr/local/lib/curv/std.curv":
+  // 1232|                 [shape.bbox[MIN,X],shape.bbox[MIN,Y],-h],
+  //                        ^^^^^
+  //tri { base = base_default, height = 1, c = red } =
+
+  // Compile error:
+  // make: *** [Makefile:44: l] Segmentation fault (core dumped)
+  //tri = parametric base = base_default, height = 1, c = red in
+
+  // Works but no there isn't a second slider
+  //tri = parametric base :: slider[0,5] = 1, height = 1, c = red in
+
+  // Should work but compile error
+  // ERROR: <function tri> does not contain field .bbox
+  // at file "/usr/local/lib/curv/std.curv":
+  // 1232|                 [shape.bbox[MIN,X],shape.bbox[MIN,Y],-h],
+  //tri {base = 1, height = 1, c = red} =
+
+  // Works and allows no parameters, 0, 1, 2 or 3 parameters
+  tri = parametric base = 1, height = 1, c = red in
+
+     polygon [[-base/2, 0], [0, height], [base/2, 0]]
+     >> colour c
+in
+  row[
+     tri
+       >> extrude 1
+    ,tri {}
+       >> extrude 5
+    ,tri {c:blue}
+       >> extrude 10
+    ,tri {height: 3, c:green}
+       >> extrude 15
+    ,tri {base: 5, height: 3, c:green}
+       >> extrude 20
+  ]

@@ -1,0 +1,7 @@
+// This compiles and runs but no picker is shown
+let
+  tri = parametric c :: colour_picker = red in
+    polygon [[-0.5,0], [0,1], [0.5, 0]]
+      >> colour c;
+in
+  row[tri, tri {c: black}]
