@@ -1,0 +1,44 @@
+{
+  teIdx af = 0;
+  tePt af = af[teIdx(af)];
+  teX af = tePt(af)[X];
+  teY af = tePt(af)[Y];
+
+  leIdx af = do
+    local idx = 0;
+    local minIdx = inf;
+    local minX = inf;
+    for (pt in af) (
+      if (pt[X] < minX) (
+        minIdx := idx;
+        minX := pt[X];
+        //print "pt[X]=$(pt[X]) idx=$idx minIdx=$minIdx minX=$minX";
+      );
+      idx := idx + 1;
+    );
+  in
+    minIdx;
+  lePt af = af[leIdx(af)];
+  leX af = lePt(af)[X];
+  leY af = lePt(af)[Y];
+
+  normalize af = do
+    local tex = teX af;
+    local lex = leX af;
+    local chord = tex - lex;
+    //print "tex=$tex lex=$lex chord=$chord";
+    local nAf = [for (pt in af) do
+        local x = pt[X];
+        local y = pt[Y];
+        //print "x=$x y=$y";
+      in
+        [x / chord, y / chord]
+    ];
+  in
+    nAf;
+
+  fattenTe {v, t=1, len=10} = do
+    print "fattenTe v=$v t=$t len=$len NOP";
+  in
+    v;
+}
