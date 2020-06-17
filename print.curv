@@ -1,0 +1,15 @@
+let array = [
+      [ [0,0], [0,1], [0,2] ],
+      [ [1,0], [1,1], [1,2] ],
+      [ [2,0], [2,1], [2,2] ],
+    ];
+    x = 123;
+in do
+    print (array[1,2], array[2,1]);
+    print "array=$array";
+    print "x=$x";
+in
+make_texture (p->
+    let xy = array[p[Z]+1,p[Z]+2];
+    in sRGB[xy[X]-1,xy[Y]-1,0])
+

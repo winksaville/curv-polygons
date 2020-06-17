@@ -1,0 +1,28 @@
+let
+  airfoil = let
+    rawAirfoil = [
+       [-0.5, 0]
+      ,[0, 1]
+      ,[0.5, 0]
+      ,[0.2, 1]
+      ,[0, 2]
+    ];
+
+    a = rawAirfoil;
+  in a;
+
+  // Define function to find maximum X value
+  maxX v =
+    let
+      mx=-inf;
+    in
+      do
+        for (xy in v)
+          if (xy[X] > mx)
+            mx := xy[X];
+      in
+        mx;
+in
+  polygon airfoil
+    // Use the function
+    >> extrude (maxX(airfoil) * 10)

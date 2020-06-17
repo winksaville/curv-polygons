@@ -1,0 +1,12 @@
+let
+  // Define function to find maximum X value
+  maxV [v1, v2] =
+    if (v1 > v2)
+      do print "v1 > v2";
+      in v1
+    else
+      do print "v2 >= v1";
+      in v2
+in
+  regular_polygon 8
+    >> extrude (maxV [2,3])

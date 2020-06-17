@@ -1,0 +1,52 @@
+let
+  airfoil = [
+       [-0.5, 0]
+      ,[0, 1]
+      ,[0.5, 0]
+      ,[0.2, 1]
+      ,[0, 2]
+  ];
+
+  // Define function to find maximum between 2 values
+  maxV [v1, v2] =
+    if (v1 > v2)
+      do print "$v1 > $v2"; in v1
+    else
+      do print "$v2 >= $v1"; in v2;
+
+  // Define function to find maximum X value in array v
+  maxX v =
+    let
+      mx=-inf;
+    in
+      do
+        print "top mx=$mx";
+
+        for (xy in v)
+          //mx := if (xy[X] > mx) xy[X] else mx;
+
+          //mx := maxV [xy[X], mx];
+
+          //mx := if (xy[X] > mx)
+          //        do print "xy[X]:$(xy[X]) > mx:$mx"; in xy[X]
+          //      else
+          //        do print "mx:$mx >= xy[X]:$(xy[X])"; in mx;
+
+          //if (xy[X] > mx) mx := xy[X];
+
+          //if (xy[X] > mx) let _mx = xy[X] in mx := _mx;
+
+          // Works
+          //if (xy[X] > mx) let _mx = xy[X] in (print "mx=$mx, _mx=$_mx"; mx := _mx);
+          if (xy[X] > mx) let _mx = xy[X] in (mx := _mx; print "mx=$mx, _mx=$_mx");
+
+          // Fails
+          //if (xy[X] > mx) let _mx = xy[X] in do print "_mx=$_mx"; in mx := _mx;
+
+        print "done mx=$mx";
+      in
+        mx;
+in
+  polygon airfoil
+    // Use the function
+    >> extrude (maxX(airfoil) * 10)
