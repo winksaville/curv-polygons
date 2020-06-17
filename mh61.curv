@@ -1,6 +1,7 @@
 // MH61 airfoil from https://www.mh-aerotools.de/airfoils/index.htmlet
 // The trailing edge is to thin to be printed at 0.1mm. I scaled this
 // by 50 and the chord as printed was only 46mm :(
+let
   airfoil = [
      [1.00000,  0.00000]
     ,[0.99662, -0.00021]
@@ -71,4 +72,4 @@ in
   polygon airfoil
   >> scale chord
   >> extrude span
-  //>> move [0, 0, span/2]
+  >> move [0, 0, span/2]
