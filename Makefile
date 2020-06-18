@@ -49,8 +49,8 @@ lz:
 
 .PHONY: live
 live: l
-	
-	
+
+.PHONY: obj
 obj: $(filename).obj
 
 $(filename).obj: $(filename).curv
